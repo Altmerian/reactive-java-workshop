@@ -2,6 +2,8 @@ package io.javabrains.reactiveworkshop;
 
 import java.io.IOException;
 
+import static io.javabrains.reactiveworkshop.ReactiveSources.intNumbersFlux;
+
 public class Exercise9 {
 
 
@@ -10,13 +12,20 @@ public class Exercise9 {
         // Use ReactiveSources.intNumbersFlux()
 
         // Print size of intNumbersFlux after the last item returns
-        // TODO: Write code here
+//        intNumbersFlux()
+//                .count()
+//                .subscribe(count -> System.out.println(count));
 
         // Collect all items of intNumbersFlux into a single list and print it
-        // TODO: Write code here
+//        intNumbersFlux()
+//                .collectList()
+//                .subscribe(list -> System.out.println(list));
 
         // Transform to a sequence of sums of adjacent two numbers
-        // TODO: Write code here
+        intNumbersFlux()
+                .buffer(2)
+                .map(list -> list.stream().reduce(0, (i, j) -> i + j))
+                .subscribe(listSums -> System.out.println(listSums));
 
         System.out.println("Press a key to end");
         System.in.read();
